@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosso Momento</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background-color: #000000; /* Altera o fundo para preto */
+      color: #fff; /* Altera a cor do texto para branco */
+      overflow: auto; /* Garante que a página seja rolável */
+    }
+    .container {
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
+    }
+    img {
+      width: 100%; /* A imagem vai ocupar toda a largura da tela */
+      max-width: 500px; /* Limita a largura máxima da imagem */
+      height: auto; /* Mantém a proporção da imagem */
+      border-radius: 10px;
+      margin-top: 20px;
+      display: block; /* Garante que a imagem se comporte corretamente */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      font-size: 2em;
+      color: #ff6347; /* Mantém o título em uma cor vibrante */
+      margin-top: 20px;
+    }
+    p {
+      font-size: 1.2em;
+      color: #fff; /* Altera a cor do texto para branco */
+      line-height: 1.6em;
+      margin-top: 20px;
+    }
+    .date {
+      font-size: 1.5em;
+      color: #32cd32; /* Cor verde para a data */
+      margin-top: 20px;
+    }
+
+    /* Efeito de coração caindo */
+    .heart {
+      position: absolute;
+      top: -50px;
+      font-size: 2em;
+      color: red;
+      animation: fall 5s infinite;
+      opacity: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) scale(2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Leo & Gi</h1> <!-- Nomes do casal -->
+    <img src="foto_casal.jpg" alt="Foto do Casal"> <!-- Foto do casal (local ou online) -->
+    <p class="message">
+      "Desde o dia em que eu te conheci, minha vida ganhou novas cores, novos sorrisos e um brilho especial que só você sabe trazer. 💖 Cada momento ao seu lado é como um pedacinho de felicidade guardado no meu coração, e a cada dia que passa, eu me apaixono mais por você." <br><br>
+      "O jeito que você sorri, a forma como seus olhos brilham quando fala sobre algo que ama, o som da sua risada que é a minha melodia favorita… Tudo em você me encanta e me faz querer estar sempre perto. Você é meu porto seguro, minha melhor escolha, meu amor mais bonito." <br><br>
+      "Obrigado por ser essa pessoa incrível, por iluminar meus dias e por me fazer acreditar que o amor mais lindo do mundo é o que construímos juntos. Te amo infinitamente! ❤✨"
+    </p> <!-- Texto fofo -->
+    <p class="date">Estamos juntos há: <span id="tempo"></span></p> <!-- Contagem de dias -->
+  </div>
+
+  <script>
+    // Definir a data de início do relacionamento (09 de janeiro de 2025)
+    const dataInicio = new Date("2025-01-09"); // Data de início do relacionamento
+
+    // Função para atualizar a contagem de dias
+    function atualizarTempo() {
+      const hoje = new Date(); // Data atual
+      const tempo = Math.floor((hoje - dataInicio) / (1000 * 60 * 60 * 24)); // Calcula o número de dias
+      document.getElementById('tempo').innerText = tempo + " dias!"; // Exibe a quantidade de dias
+    }
+
+    // Atualiza a contagem de dias a cada segundo (1000 ms)
+    setInterval(atualizarTempo, 1000);
+
+    // Função para criar corações aleatórios caindo
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤"; // Emoji do coração vermelho
+
+      // Define uma posição aleatória horizontal
+      const randomLeft = Math.random() * window.innerWidth;
+      heart.style.left = randomLeft + "px";
+
+      // Adiciona o coração à tela
+      document.body.appendChild(heart);
+
+      // Remove o coração depois que ele caiu
+      setTimeout(() => {
+        heart.remove();
+      }, 5000); // Tempo da animação (5s)
+    }
+
+    // Gera um coração a cada 200ms
+    setInterval(createHeart, 200);
+  </script>
+
+</body>
+</html>
